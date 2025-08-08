@@ -1,0 +1,47 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "StorageAccountTier": {
+        "type": "string",
+        "metadata": {
+            "description": "The storage account tier to use. Valid values are Premium, Standard, and Hot."
+        },
+        "defaultValue": "Premium", 
+        "allowedValues": [
+            "Premium",
+            "Standard"
+        ]
+        }
+    },
+    "functions": [],
+    "variables": {
+        "resourceName": "shivakrishdemoname942875"
+    },
+    "resources": [
+       {
+        "name": "[variables('resourceName')]",
+        "type": "Microsoft.Storage/storageAccounts",
+        "apiVersion": "2023-05-01",
+        "tags": {
+            "displayName": "[variables('resourceName')]"
+        },
+        "location": "[resourceGroup().location]",
+        "kind": "StorageV2",
+        "sku": {
+            "name": "Premium_LRS",
+            "tier": "[parameters('StorageAccountTier')]"
+        }
+       }
+    ],
+    "outputs": {
+        "storageAccountName": {
+            "type": "string",
+            "value": "[variables('resourceName')]"
+        },
+        "storageAccountId": {
+            "type": "string",
+            "value": "[resourceId('Microsoft.Storage/storageAccounts', variables('resourceName'))]"
+        }
+    }
+}
