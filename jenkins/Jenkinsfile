@@ -7,7 +7,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/Kalkireddy/APS.git'
+                git branch: 'main',
+                    url: 'https://github.com/Kalkireddy/APS.git'
             }
         }
         stage('Build') {
