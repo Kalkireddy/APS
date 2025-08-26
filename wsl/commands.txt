@@ -1,0 +1,73 @@
+🔹 1. ✅ Basics
+
+Run a command as root ----	sudo <command>
+Run as another user	---- sudo -u <user> <command>
+Start a root shell ----	sudo -i
+Run a login shell as another user -------	sudo -iu <user>
+Edit file with root permissions	--------- sudo nano /etc/fstab
+
+🔹 2. 📦 Package Management
+
+Update packages	------- sudo apt update (Debian/Ubuntu)
+sudo yum check-update (RHEL/CentOS)
+Upgrade all packages -----	sudo apt upgrade -y
+sudo yum update -y
+Install a package	--------- sudo apt install <pkg>
+sudo yum install <pkg>
+Remove a package -----	sudo apt remove <pkg>
+sudo yum remove <pkg>
+
+🔹 3. 🧰 System Management
+
+Reboot the system	------- sudo reboot
+Shutdown the system	------- sudo shutdown now
+View running processes ----	sudo ps aux
+Kill a process --------	sudo kill -9 <PID>
+Check disk usage -----	sudo du -sh /var/*
+Check disk space ----	sudo df -h
+View system logs ----	sudo journalctl -xe (systemd)
+sudo tail -f /var/log/syslog
+
+🔹 4. 🔐 User & Permission
+
+Add a new user	------ sudo adduser shiv
+Add user to group	------- sudo usermod -aG docker shiv
+Change file owner	------- sudo chown user:group file
+Change file permissions	----- sudo chmod 755 /script.sh
+
+🔹 5. 🗂️ File Ops (as root)
+
+Edit protected file	------- sudo nano /etc/hosts
+Move system file	----- sudo mv /tmp/app.conf /etc/nginx/
+Delete file/folder	------ sudo rm -rf /opt/old_app
+Create directory	------ sudo mkdir /opt/new_dir
+
+🔹 6. 🧪 DevOps-Specific
+
+Run Terraform with elevated permissions	------- sudo terraform apply (not common, but needed if writing to protected paths)
+Reload systemd -----	sudo systemctl daemon-reexec
+Start/stop services	------- sudo systemctl start nginx
+sudo systemctl ------- stop docker
+Enable service on boot	------- sudo systemctl enable docker
+
+🔸 Bonus Tips
+
+⏳ sudo !! → Rerun last command with sudo
+(e.g., you typed apt install nginx and forgot sudo — just do sudo !!)
+
+🔁 Add yourself to sudo group (Ubuntu):
+
+sudo usermod -aG sudo shiv
+
+
+🔧 How to Monitor WSL Disk Usage Like a Pro
+📌 Useful Commands:
+
+# Total WSL disk usage
+du -sh /* 2>/dev/null
+
+# Sort largest directories
+du -h --max-depth=1 / | sort -hr | head -20
+
+# Check your home folder size
+du -sh ~

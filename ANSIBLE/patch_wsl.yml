@@ -1,0 +1,17 @@
+# ansible-playbook -i inventory.ini patch_wsl.yml
+# ansible localhost -m ping -c local
+
+- name: Patch WSL System
+  hosts: local
+  become: yes
+  tasks:
+    - name: Update APT Cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Upagrade All Packages
+      apt:
+        upgrade: dist
+        autoremove: yes
+        autoclean: yes
