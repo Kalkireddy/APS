@@ -1,0 +1,94 @@
+Perfect, Shiv. Here's your fast-track hands-on roadmap — covering everything a DevOps engineer must master, from beginner to expert — including:
+
+✅ Jenkins Pipelines
+
+✅ Terraform Templates
+
+✅ Ansible Playbooks
+
+✅ Kubernetes YAMLs
+
+✅ Dockerfiles
+
+✅ AWS Lambda Functions
+
+✅ Azure ARM Templates
+
+✅ Bash Scripts
+
+✅ Python Automation Scripts
+
+✅ Cloud Platforms: AWS + Azure
+
+I’ve broken this down into phased weeks with specific goals, tools, and outputs. This is a hands-on-first roadmap, optimized for speed without cutting corners.
+
+🚀 DevOps Coding Roadmap (Beginner → Expert)
+🗓️ Week 1: Foundation Boot-up (Prep Layer)
+Area	Goals
+🖥️ Linux/Bash	Basics + scripting, file ops, cron jobs
+🧠 Git/GitHub	Clone, branch, PR, rebase, workflows
+🐳 Docker	Dockerfile, docker-compose, image optimization
+✍️ Hands-on	Write: 10+ bash scripts (disk, backup, cron, logs), 5 Dockerfiles (Python, Node, Nginx, etc.)
+🗓️ Week 2: Jenkins + Pipelines (CI/CD Core)
+Area	Goals
+📦 Jenkins	Setup, plugins, Jenkinsfile syntax
+🔁 Pipelines	Declarative & scripted, multibranch
+🔗 Integration	GitHub, Docker, Terraform
+✍️ Hands-on	Write: 5+ Jenkinsfiles (build, test, deploy to EC2/EKS, Docker push, multistage pipelines)
+🗓️ Week 3: Terraform (Infra as Code)
+Area	Goals
+📐 Basics	Providers, resources, variables, outputs
+🔁 Intermediate	Modules, remote backend, workspaces
+☁️ Cloud	AWS: EC2, S3, IAM, VPC
+✍️ Hands-on	Write: 8+ reusable modules, 5 env-specific Terraform stacks, backend.tf setup
+🗓️ Week 4: Ansible + Config Management
+Area	Goals
+⚙️ Playbooks	YAML structure, roles, handlers, vars
+📦 Inventories	Dynamic + static (AWS/Azure)
+💥 Advanced	Conditionals, loops, Jinja2 templates
+✍️ Hands-on	Write: 10+ playbooks (Nginx, users, Docker, Git, AWS CLI, multi-host deploy)
+🗓️ Week 5: Kubernetes YAMLs + Helm
+Area	Goals
+🔧 Core YAMLs	Pod, Deployment, Service, ConfigMap, Secret
+🌐 Networking	Ingress, LoadBalancer, headless svc
+🧰 Advanced	StatefulSet, DaemonSet, probes, volumes
+📦 Helm	Chart basics, templates, values
+✍️ Hands-on	Write: 10+ manifests, 3 Helm charts, 1 multi-tier app deploy on EKS/AKS
+🗓️ Week 6: Cloud Functions + Templates
+Area	Goals
+⚡ AWS Lambda	Python handler, IAM role, API Gateway
+🔵 Azure ARM	JSON schema, parameters, linked templates
+🔁 Bicep (bonus)	Bicep syntax for cleaner ARM templates
+✍️ Hands-on	Write: 5 Lambda functions (S3 trigger, API), 3+ ARM templates (VM, Storage, NSG)
+🗓️ Week 7: Python + Bash Automation Scripts
+Area	Goals
+🐍 Python CLI	argparse, subprocess, boto3, automation
+🐚 Bash	CLI tools, logs, monitoring, system cleanup
+✍️ Hands-on	Write: 5 Python scripts (AWS resource mgmt), 10 Bash scripts (alerts, cleanup, triggers)
+🗓️ Week 8: CI/CD Projects (Real-World Build)
+Project Area	Stack
+🛠️ Microservices CI/CD	Docker + Jenkins + EKS (AWS)
+🧱 Infra Automation	Terraform + Jenkins + Azure DevOps
+🧪 Monitoring & Logging	Prometheus + Grafana + ELK
+✍️ Outcome	GitHub-ready, interview-ready projects
+📚 Add-Ons You Shouldn't Miss
+
+📘 YAML best practices
+
+🔐 Secrets mgmt (AWS Secrets Manager, Azure Key Vault)
+
+🔁 GitOps with ArgoCD (optional advanced module)
+
+🌐 DNS + Load Balancing (Route53, Azure DNS)
+
+📦 Package managers: Helm, pip, npm
+
+🧰 What You’ll End With
+
+✅ Mastery over real-world DevOps code
+
+✅ Your own GitHub portfolio
+
+✅ Expertise across AWS + Azure for all common IaC patterns
+
+✅ Fully hands-on with all major scripting/coding areas
