@@ -41,7 +41,7 @@ pipeline {
             echo "✅ Build & Push Successful!"
         }
         failure {
-            echo "❌ Pipeline Failed!"
+            echo "Pipeline Failed!"
         }
     }
 }
