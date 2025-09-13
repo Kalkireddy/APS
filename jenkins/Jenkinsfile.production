@@ -1,0 +1,80 @@
+pipeline {
+    agent any
+    environment {
+        IMAGE_NAME = "your-dockerhub-username/your-app"
+        GIT_CREDENTIALS_ID = 'git_ops_ssh_key'
+        GITOPS_REPO = 'git@github.com:your-org/helm-gitops-repo.git'
+        HELM_PATH = 'your-app'
+    }
+
+    stages {
+        stage('mavenBuild and unitTests') {
+            steps {
+                sh 'mvn clean install'
+            }
+        }
+
+        stage('SonarQube Scan') {
+            environment {
+                SONAR_TOKEN = credentials('sonar_token')
+            }
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh 'mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN'
+                }
+            }
+        }
+
+        stage('Docker Build and push') {
+            steps {
+                script {
+                    COMMIT_SHA = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
+                    IMAGE_TAG = "${IMAGE_NAME}:${COMMIT_SHA}"
+                }
+                sh """
+                  docker build -t ${IMAGE_TAG} .
+                """
+            }
+        }
+
+        stage('Trivy Scan') {
+            steps {
+                sh 'trivy --version' // optional: sanity test
+                sh """
+                  trivy image --exit-code 1 --severity CRITICAL,HIGH ${IMAGE_TAG}
+                """
+            }
+        }    
+
+        stage('Push to DockerHub') {
+            steps {
+                sh "docker push ${IMAGE_TAG}"
+            }
+        }
+
+        stage('Update Helm values.yaml in GitOps repo') {
+            steps {
+                sshagent([env.GIT_CREDENTIALS_ID]) {
+                    sh """
+                      git clone $GITOPS_REPO
+                      cd helm-gitops-repo/${HELM_PATH}
+                      sed -i 's|repository: .*|repository: ${IMAGE_NAME}|' values.yaml
+                      sed -i 's|tag: .*|tag: ${COMMIT_SHA}|' values.yaml
+                      git config user.name "jenkins-bot"
+                      git config user.email "jenkins-bot@your-org.com"
+                      git commit -am "Update image tag to ${IMAGE_TAG}"
+                      git push origin main
+                    """
+                }
+            }
+        }
+    }
+
+    post {
+        failure {
+            mail to: 'devops-team@your-org.com',
+                 subject: "Build failed in Jenkins: ${env.JOB_NAME}-${env.BUILD_NUMBER}",
+                 body: "Check Jenkins logs: ${env.BUILD_URL}"
+        }
+    }
+}
