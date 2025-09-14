@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aps
+  namespace: dev-stable   # 👈 deployment goes into dev-stable namespace
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: aps
+  template:               # 👈 template is sibling of selector, not inside
+    metadata:
+      labels:             # 👈 typo fixed: labels
+        app: aps
+    spec:
+      containers:
+      - name: tomee
+        image: nginx      # replace nginx with your APS app image
+        ports:
+        - containerPort: 80
+        envFrom:
+        - configMapRef:
+            name: aps-config
+        - secretRef:
+            name: aps-secret
