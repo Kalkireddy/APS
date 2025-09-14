@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+ name: aps-config
+ namespace: dev-stable
+data:
+  APP_MODE: "production"
+  DB_HOST: "aps-db"

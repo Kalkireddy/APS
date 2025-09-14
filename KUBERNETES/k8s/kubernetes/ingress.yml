@@ -1,0 +1,27 @@
+# How to Install NGINX Ingress Controller
+
+# You don’t need to manually download files — you can apply the official YAML directly from GitHub:
+
+# kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.9.6/deploy/static/provider/cloud/deploy.yaml
+
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: aps-ingress
+  namespace: dev-stable
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:                          
+  ingressClassName: nginx
+  rules:
+  - host: aps.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: aps-service
+            port:
+              number: 80
