@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-nginx-ingress
+spec:
+  ingressClassName: traefik   # k3s default ingress controller
+  rules:
+  - host: my-nginx.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: my-nginx    # match the service name EXACTLY
+            port:
+              number: 80
