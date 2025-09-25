@@ -1,0 +1,20 @@
+Network: vpc, firewall, subnets, route table, nat gateway,vpn, endpoint, internet gateway
+EC2: instance, load balancer, auto scaling group, launch template, security group, key pair, elastic ip, AMI, snapshot
+S3: bucket, object, lifecycle policy, versioning, replication, static website hosting, encryption, acls, bucket policy, storage class
+IAM: user, group, role, policy, mfa, access key, identity federation, permissions boundary, password policy
+ECS: cluster, task definition, service, container, fargate, ecs-optimized ami, load balancer integration
+RDS: instance, multi-az deployment, read replica, snapshot, parameter group, subnet group, encryption, automated backups
+Lambda: function, trigger, layer, versioning, concurrency, environment variables, execution role
+CloudFront: distribution, origin, cache behavior, ssl certificate, invalidation, geo restriction
+DynamoDB: table, item, attribute, index, stream, backup, global table, capacity mode
+CloudWatch: log group, metric, alarm, dashboard, events, insights
+CloudTrail: trail, event history, log file validation, sns notification
+EFS: file system, mount target, access point, lifecycle policy, performance mode
+Secrets Manager: secret, rotation, version, resource policy
+Systems Manager: parameter, run command, session manager, patch manager, inventory
+WAF: web acl, rule, rule group, managed rule group, ip set
+API Gateway: rest api, resource, method, stage, deployment, usage plan, api key
+Event bridge: event bus, rule, target, schema
+SNS: topic, subscription, message, fifo topic
+SQS: queue, message, dead-letter queue, fifo queue
+FSX: file system, storage capacity, throughput capacity, backup

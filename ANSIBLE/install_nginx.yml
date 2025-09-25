@@ -1,21 +1,21 @@
-# # ansible-playbook -i inventory.ini install_nginx.yml
-# # ssh root@web1
-# # curl localhost
-# # ansible -i inventory.ini web -m ping
-# # ansible localhost -m ping -c local
+# ansible-playbook -i inventory.ini install_nginx.yml
+# ssh root@web1
+# curl localhost
+# ansible -i inventory.ini web -m ping
+# ansible localhost -m ping -c local
 
-# name: Install and Start NGINX on webservers
-# hosts: web
-# become: yes
-# tasks:
-#   - name: Install NGINX
-#     apt:
-#       name: nginx 
-#       state: present
-#       update_catche: yes
+name: Install and Start NGINX on webservers
+hosts: web
+become: yes
+tasks:
+  - name: Install NGINX
+    apt:
+      name: nginx 
+      state: present
+      update_catche: yes
   
-#   - name: Start and Enable NGINX
-#     ansible.builtin.service:
-#       name: nginx 
-#       state: started
-#       enabled: yes
+  - name: Start and Enable NGINX
+    ansible.builtin.service:
+      name: nginx 
+      state: started
+      enabled: yes

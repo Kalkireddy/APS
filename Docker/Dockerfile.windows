@@ -1,0 +1,9 @@
+#docker build -f Dockerfile.windows -t myapp:dev .
+
+FROM mcr.microsoft.com/powershell
+
+SHELL ["pwsh", "-Command"]
+
+RUN mkdir -p /home/shiv_reddy/APS/Docker/shiv
+
+RUN "hey shiv!" | Out-File -Path /home/shiv_reddy/APS/Docker/shiv/shiv.txt

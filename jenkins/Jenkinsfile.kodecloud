@@ -1,0 +1,65 @@
+pipeline {
+  agent any
+
+  environment {
+    DOCKER_REGISTRY = "docker-host:5000"
+    IMAGE_NAME = "sample-app"
+    IMAGE_TAG = "latest"
+  }
+
+  stages {
+    stage('Checkout') {
+      steps {
+        echo "Using local folder – skipping SCM checkout"
+      }
+    }
+
+    stage('Build with Maven') {
+      steps {
+        dir('/root/playground-project') {
+          sh 'mvn clean package'
+        }
+      }
+    }
+
+    stage('Docker Build') {
+      steps {
+        dir('/root/playground-project') {
+          sh 'docker build -t ${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} .'
+        }
+      }
+    }
+
+    stage('Docker Push') {
+      steps {
+        sh '''
+          docker login ${DOCKER_REGISTRY} -u dock_user -p dock_password
+          docker push ${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}
+        '''
+      }
+    }
+
+    stage('Cleanup') {
+      steps {
+        sh 'docker rmi ${DOCKER_REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG} || true'
+      }
+    }
+  }
+
+  post {
+    success {
+      echo "✅ Build and Push completed successfully"
+    }
+    failure {
+      echo "❌ Build or Push failed"
+    }
+  }
+}
+
+withCredentials([string(credentialId: "AWS_KEY" , variable: "AWS_KEY")]) {
+    sh '''
+    #use the key sliently
+    aws configure set aws_access_key_id $AWS_KEY
+    '''
+
+}
