@@ -55,3 +55,11 @@ pipeline {
     }
   }
 }
+
+withCredentials([string(credentialId: "AWS_KEY" , variable: "AWS_KEY")]) {
+    sh '''
+    #use the key sliently
+    aws configure set aws_access_key_id $AWS_KEY
+    '''
+
+}
